@@ -1,109 +1,52 @@
-/* Grundläggande stil för hela sidan */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+* {
+    padding: 0;
     margin: 0;
-    background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
-    font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
-/* Stil för huvudcontainern */
-.container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 800px;
-}
-
-/* Rubrikstil */
-h1 {
-    font-size: 2em;
-    color: #4CAF50;
-    margin-bottom: 10px;
-}
-
-/* Stil för måltavlorna */
-.target {
-    width: 155px;
-    height: 175px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    margin-right: 1em;
-    float: left;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-}
-
-.target:hover {
-    transform: scale(1.1);
-}
-
-.target table {
-    width: 100%;
-    height: 100%;
-}
-
-.target td {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 16px;
-    font-weight: bold;
+.game {
+    width: 600px;
+    height: 200px;
+    border: 1px solid #000000;
+    margin: auto;
+    position: relative;
     overflow: hidden;
 }
 
-/* Stil för poäng och ord-display */
-#archWord {
-    font-size: 35px;
-    padding: 5px;
-    color: #333;
+#dino {
+    width: 70px;
+    height: 70px;
+    background-image: url(t-rex.png);
+    background-size: auto 70px;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
 }
 
-#score {
-    font-size: 20px;
-    color: #333;
+.jump {
+    animation: jump 0.3s linear;
 }
 
-/* Stil för bakgrund och grässektion */
-#grass {
-    z-index: 2;
-    height: 180px;
-    background-color: rgb(0, 159, 4);
-    border-top: 1px solid rgb(7, 127, 1);
-    text-align: center;
-    padding: 15px;
+@keyframes jump {
+    0% { bottom: 0; }
+    30% { bottom: 60px; }
+    50% { bottom: 100px; }
+    80% { bottom: 60px; }
+    100% { bottom: 0; }
 }
 
-/* Stil för svårighetslänkar */
-.archSpeed {
-    font-size: 16px;
-    text-decoration: none;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+#cactus {
+    width: 20px;
+    height: 40px;
+    background-image: url(cactus.png);
+    background-size: 20px 40px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    animation: cactus-block 1.2s infinite linear;
 }
 
-.archSpeed:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Responsiv design */
-@media (max-width: 600px) {
-    .target {
-        width: 120px;
-        height: 140px;
-        margin-right: 0.5em;
-    }
-    #archWord {
-        font-size: 28px;
-    }
-    #score {
-        font-size: 18px;
-    }
+@keyframes cactus-block {
+    0% { right: 0; }
+    100% { right: 600px; }
 }
