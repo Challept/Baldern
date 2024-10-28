@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namnsökare</title>
+    <title>GIF Sökare</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Få information om ett namn</h1>
-        <input type="text" id="nameInput" placeholder="Ange ett namn">
-        <button onclick="fetchInfo()">Sök</button>
-        <div id="result"></div>
+        <h1>Sök efter GIFs</h1>
+        <input type="text" id="searchInput" placeholder="Skriv ett nyckelord...">
+        <button onclick="fetchGIFs()">Sök</button>
+        <div id="gifContainer"></div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
