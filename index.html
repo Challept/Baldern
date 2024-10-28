@@ -3,52 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Väder</title>
+    <title>Pilbågespelet</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Emoji Väder 🌦️</h1>
-        <input type="text" id="cityInput" placeholder="Ange en stad..." />
-        <button onclick="fetchWeather()">Visa Väder</button>
-        <div id="weatherDisplay" class="weather"></div>
+    <div class="container" id="de-c" role="main">
+        <script nonce="79761184343387408734" async src="https://cdn.glosor.eu/j/b2-fz815b8f7c.js"></script>
+        <script async nonce="79761184343387408734" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+        <script nonce="79761184343387408734">window.googletag = window.googletag || {cmd: []};</script>
+        <script async nonce="79761184343387408734" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3663161857172650" crossorigin="anonymous" data-checked-head="true"></script>
+        
+        <h1 class="center margin">Pilbågespelet</h1>
+        <br>
+        <div style="min-width:520px;">
+            &nbsp;
+            <table style="margin-left:auto;margin-right:auto;" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="tar1" style="width: 155px; height: 175px; position: relative; top: 180px; z-index: 1; float: left; margin-right: 1em; background-image: url('https://cdn.glosor.eu/i/archery.gif'); background-position: center top; background-repeat: no-repeat; cursor: pointer;" class="target">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:middle;width:150px;height:150px;font-size:16px;font-weight:bold;overflow:hidden;" id="tard1">lika gammal som</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="tar2" style="width: 155px; height: 175px; position: relative; top: 180px; z-index: 1; float: left; margin-right: 1em; background-image: url('https://cdn.glosor.eu/i/archery.gif'); background-position: center top; background-repeat: no-repeat; cursor: pointer;" class="target correct">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:middle;width:150px;height:150px;font-size:16px;font-weight:bold;overflow:hidden;" id="tard2">gifta sig</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="tar3" style="width: 155px; height: 175px; position: relative; top: 180px; z-index: 1; float: left; margin-right: 1em; background-image: url('https://cdn.glosor.eu/i/archery.gif'); background-position: center top; background-repeat: no-repeat; cursor: pointer;" class="target">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align:center;vertical-align:middle;width:150px;height:150px;font-size:16px;font-weight:bold;overflow:hidden;" id="tard3">skylla på</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="z-index: 2; height: 180px; position: relative; background-color: rgb(0, 159, 4); border-top: 1px solid rgb(7, 127, 1); text-align: center;" id="grass">
+                <div id="archWord" style="font-size:35px;padding:5px;height:60px;">marry</div>
+                <div style="font-size:16px;padding:2px;">Poäng</div>
+                <div id="score" style="font-size:20px;padding:3px;">-5 / 20</div>
+                <div style="font-size:13px;padding:10px;">
+                    <a href="#" id="speed1" class="archSpeed" style="color: rgb(0, 0, 0);">Lätt</a> &nbsp; 
+                    <a href="#" id="speed2" class="archSpeed" style="font-weight: bold; color: rgb(0, 0, 0);">Mellan</a> &nbsp; 
+                    <a href="#" id="speed3" class="archSpeed" style="color: rgb(0, 0, 0);">Svår</a> &nbsp; 
+                    <a href="#" id="speed4" class="archSpeed" style="color: rgb(0, 0, 0);">Svår+</a>
+                </div>
+            </div>
+        </div>
+        <div id="log" style="font-family:monospace;">
+        </div>
     </div>
-
-    <!-- JavaScript-koden är inbäddad här -->
-    <script>
-        const apiKey = 'fbb34ef6745a4778912193849242909';
-
-        async function fetchWeather() {
-            const city = document.getElementById("cityInput").value;
-            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                displayWeather(data.current.condition.text);
-            } catch (error) {
-                document.getElementById("weatherDisplay").innerText = "Fel! Stad hittades inte.";
-            }
-        }
-
-        function displayWeather(condition) {
-            const weatherDisplay = document.getElementById("weatherDisplay");
-            weatherDisplay.innerText = ""; // Rensa tidigare väderdata
-
-            const emojiMap = {
-                Sunny: "☀️",
-                Rain: "🌧️",
-                Cloudy: "☁️",
-                Snow: "❄️",
-                Thunderstorm: "⛈️",
-                Drizzle: "🌦️",
-                Mist: "🌫️",
-                Overcast: "🌥️",
-            };
-
-            weatherDisplay.innerText = emojiMap[condition] || "🤷‍♂️";
-        }
-    </script>
 </body>
 </html>
