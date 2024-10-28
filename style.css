@@ -1,43 +1,60 @@
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    overflow: hidden;
 }
 
 .container {
     text-align: center;
-    width: 90%;
-    max-width: 600px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: popIn 1s ease forwards;
 }
 
-input {
+input, button {
     padding: 10px;
     font-size: 16px;
-    width: 80%;
-    margin-bottom: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: #66a6ff;
+    color: white;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
-#gifContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+button:hover {
+    transform: scale(1.1);
+}
+
+.weather {
     margin-top: 20px;
+    font-size: 48px;
+    animation: fadeIn 1s ease forwards, bounce 1.5s ease-in-out infinite;
 }
 
-.gif {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
