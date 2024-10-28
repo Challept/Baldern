@@ -13,6 +13,42 @@
         <button onclick="fetchWeather()">Visa Väder</button>
         <div id="weatherDisplay" class="weather"></div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- JavaScript-koden är inbäddad här -->
+    <script>
+        const apiKey = 'YOUR_API_KEY';
+
+        async function fetchWeather() {
+            const city = document.getElementById("cityInput").value;
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                displayWeather(data.current.condition.text);
+            } catch (error) {
+                document.getElementById("weatherDisplay").innerText = "Fel! Stad hittades inte.";
+            }
+        }
+
+        function displayWeather(condition) {
+            const weatherDisplay = document.getElementById("weatherDisplay");
+            weatherDisplay.innerText = ""; // Rensa tidigare väderdata
+
+            const emojiMap = {
+                Sunny: "☀️",
+                Rain: "🌧️",
+                Cloudy: "☁️",
+                Snow: "❄️",
+                Thunderstorm: "⛈️",
+                Drizzle: "🌦️",
+                Mist: "🌫️",
+                Overcast: "🌥️",
+            };
+
+            weatherDisplay.innerText = emojiMap[condition] || "🤷‍♂️";
+        }
+    </script>
 </body>
 </html>
