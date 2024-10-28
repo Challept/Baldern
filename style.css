@@ -1,60 +1,109 @@
+/* Grundläggande stil för hela sidan */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
-    overflow: hidden;
 }
 
+/* Stil för huvudcontainern */
 .container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: popIn 1s ease forwards;
+    width: 90%;
+    max-width: 800px;
 }
 
-input, button {
-    padding: 10px;
-    font-size: 16px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Rubrikstil */
+h1 {
+    font-size: 2em;
+    color: #4CAF50;
+    margin-bottom: 10px;
 }
 
-button {
-    background-color: #66a6ff;
-    color: white;
+/* Stil för måltavlorna */
+.target {
+    width: 155px;
+    height: 175px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    margin-right: 1em;
+    float: left;
     cursor: pointer;
-    transition: transform 0.2s;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
 }
 
-button:hover {
+.target:hover {
     transform: scale(1.1);
 }
 
-.weather {
-    margin-top: 20px;
-    font-size: 48px;
-    animation: fadeIn 1s ease forwards, bounce 1.5s ease-in-out infinite;
+.target table {
+    width: 100%;
+    height: 100%;
 }
 
-@keyframes popIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+.target td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Stil för poäng och ord-display */
+#archWord {
+    font-size: 35px;
+    padding: 5px;
+    color: #333;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+#score {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Stil för bakgrund och grässektion */
+#grass {
+    z-index: 2;
+    height: 180px;
+    background-color: rgb(0, 159, 4);
+    border-top: 1px solid rgb(7, 127, 1);
+    text-align: center;
+    padding: 15px;
+}
+
+/* Stil för svårighetslänkar */
+.archSpeed {
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.archSpeed:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsiv design */
+@media (max-width: 600px) {
+    .target {
+        width: 120px;
+        height: 140px;
+        margin-right: 0.5em;
+    }
+    #archWord {
+        font-size: 28px;
+    }
+    #score {
+        font-size: 18px;
+    }
 }
