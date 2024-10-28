@@ -3,43 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIF Sökare</title>
+    <title>Emoji Väder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Sök efter GIFs</h1>
-        <input type="text" id="searchInput" placeholder="Skriv ett nyckelord...">
-        <button onclick="fetchGIFs()">Sök</button>
-        <div id="gifContainer"></div>
+        <h1>Emoji Väder 🌦️</h1>
+        <input type="text" id="cityInput" placeholder="Ange en stad..." />
+        <button onclick="fetchWeather()">Visa Väder</button>
+        <div id="weatherDisplay" class="weather"></div>
     </div>
-    
-    <!-- JavaScript code block -->
-    <script>
-        const apiKey = 'xyYXS0sPPVZ6q9oQHxfRj54ItLVMrNqD';
-
-        async function fetchGIFs() {
-            const searchTerm = document.getElementById("searchInput").value;
-            const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=10&rating=g`;
-
-            const response = await fetch(url);
-            const data = await response.json();
-
-            displayGIFs(data.data);
-        }
-
-        function displayGIFs(gifs) {
-            const gifContainer = document.getElementById("gifContainer");
-            gifContainer.innerHTML = ''; // Clear previous results
-
-            gifs.forEach(gif => {
-                const img = document.createElement("img");
-                img.src = gif.images.fixed_height.url;
-                img.alt = gif.title;
-                img.className = "gif";
-                gifContainer.appendChild(img);
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
