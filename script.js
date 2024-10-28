@@ -1,34 +1,33 @@
-const apiKey = 'fbb34ef6745a4778912193849242909';
+const dino = document.getElementById("dino");
+const cactus = document.getElementById("cactus");
 
-async function fetchWeather() {
-    const city = document.getElementById("cityInput").value;
-    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        displayWeather(data.current.condition.text);
-    } catch (error) {
-        document.getElementById("weatherDisplay").innerText = "Fel! Stad hittades inte.";
+function jump() {
+    if (!dino.classList.contains("jump")) {
+        dino.classList.add("jump");
+        setTimeout(function () {
+            dino.classList.remove("jump");
+        }, 300);
     }
 }
 
-function displayWeather(condition) {
-    const weatherDisplay = document.getElementById("weatherDisplay");
-    weatherDisplay.innerText = ""; // Rensa tidigare väderdata
+let checkAlive = setInterval(function () {
+    // Get current dino Y position
+    let dinoBottom = parseInt(window.getComputedStyle(dino).getPropertyValue("bottom"));
 
-    const emojiMap = {
-        Sunny: "☀️",
-        Rain: "🌧️",
-        Cloudy: "☁️",
-        Snow: "❄️",
-        Thunderstorm: "⛈️",
-        Drizzle: "🌦️",
-        Mist: "🌫️",
-        Overcast: "🌥️",
-    };
+    // Get current cactus X position
+    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"));
 
-    // Visa emoji för väderförhållande eller en generell emoji om vädret inte hittas
-    weatherDisplay.innerText = emojiMap[condition] || "🤷‍♂️";
-}
+    // Check for collision
+    if (cactusLeft > 0 && cactusLeft < 70 && dinoBottom <= 40) {
+        cactus.style.animationPlayState = "paused";
+        dino.style.animationPlayState = "paused";
+        alert("Whoops! Game Over :(");
+        window.location.reload();
+    }
+}, 10);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === " ") {
+        jump();
+    }
+});
