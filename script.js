@@ -1,37 +1,24 @@
-async function fetchInfo() {
-    const name = document.getElementById("nameInput").value;
-    if (!name) {
-        alert("Var god ange ett namn.");
-        return;
-    }
+const apiKey = 'xyYXS0sPPVZ6q9oQHxfRj54ItLVMrNqD';
 
-    const agifyUrl = `https://api.agify.io?name=${name}`;
-    const genderizeUrl = `https://api.genderize.io?name=${name}`;
-    const nationalizeUrl = `https://api.nationalize.io?name=${name}`;
+async function fetchGIFs() {
+    const searchTerm = document.getElementById("searchInput").value;
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=10&rating=g`;
 
-    try {
-        const [ageRes, genderRes, nationalityRes] = await Promise.all([
-            fetch(agifyUrl),
-            fetch(genderizeUrl),
-            fetch(nationalizeUrl)
-        ]);
+    const response = await fetch(url);
+    const data = await response.json();
 
-        const ageData = await ageRes.json();
-        const genderData = await genderRes.json();
-        const nationalityData = await nationalityRes.json();
-
-        displayResult(name, ageData.age, genderData.gender, nationalityData.country);
-    } catch (error) {
-        document.getElementById("result").innerHTML = "Kunde inte hämta data.";
-    }
+    displayGIFs(data.data);
 }
 
-function displayResult(name, age, gender, countries) {
-    let countryNames = countries.map(country => country.country_id).join(", ");
-    document.getElementById("result").innerHTML = `
-        <h2>Resultat för ${name}</h2>
-        <p><strong>Uppskattad ålder:</strong> ${age || "Ingen data"}</p>
-        <p><strong>Kön:</strong> ${gender || "Ingen data"}</p>
-        <p><strong>Nationalitet(er):</strong> ${countryNames || "Ingen data"}</p>
-    `;
+function displayGIFs(gifs) {
+    const gifContainer = document.getElementById("gifContainer");
+    gifContainer.innerHTML = ''; // Rensar tidigare resultat
+
+    gifs.forEach(gif => {
+        const img = document.createElement("img");
+        img.src = gif.images.fixed_height.url;
+        img.alt = gif.title;
+        img.className = "gif";
+        gifContainer.appendChild(img);
+    });
 }
