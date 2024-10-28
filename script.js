@@ -1,24 +1,34 @@
-const apiKey = 'xyYXS0sPPVZ6q9oQHxfRj54ItLVMrNqD';
+const apiKey = 'fbb34ef6745a4778912193849242909';
 
-async function fetchGIFs() {
-    const searchTerm = document.getElementById("searchInput").value;
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=10&rating=g`;
+async function fetchWeather() {
+    const city = document.getElementById("cityInput").value;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
-    const response = await fetch(url);
-    const data = await response.json();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-    displayGIFs(data.data);
+        displayWeather(data.current.condition.text);
+    } catch (error) {
+        document.getElementById("weatherDisplay").innerText = "Fel! Stad hittades inte.";
+    }
 }
 
-function displayGIFs(gifs) {
-    const gifContainer = document.getElementById("gifContainer");
-    gifContainer.innerHTML = ''; // Rensar tidigare resultat
+function displayWeather(condition) {
+    const weatherDisplay = document.getElementById("weatherDisplay");
+    weatherDisplay.innerText = ""; // Rensa tidigare väderdata
 
-    gifs.forEach(gif => {
-        const img = document.createElement("img");
-        img.src = gif.images.fixed_height.url;
-        img.alt = gif.title;
-        img.className = "gif";
-        gifContainer.appendChild(img);
-    });
+    const emojiMap = {
+        Sunny: "☀️",
+        Rain: "🌧️",
+        Cloudy: "☁️",
+        Snow: "❄️",
+        Thunderstorm: "⛈️",
+        Drizzle: "🌦️",
+        Mist: "🌫️",
+        Overcast: "🌥️",
+    };
+
+    // Visa emoji för väderförhållande eller en generell emoji om vädret inte hittas
+    weatherDisplay.innerText = emojiMap[condition] || "🤷‍♂️";
 }
